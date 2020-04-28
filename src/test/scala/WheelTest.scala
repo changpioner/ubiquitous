@@ -1,6 +1,6 @@
-import java.util.concurrent.Executors
+import java.util.concurrent.{Executors, TimeUnit}
 
-import com.github.ubiquitous.wheel.RingBufferWheel
+import com.github.ubiquitous.wheel.{RingBufferWheel, WheelFactory}
 import org.scalatest.FunSuite
 
 /**
@@ -9,16 +9,14 @@ import org.scalatest.FunSuite
   */
 class WheelTest extends FunSuite {
   test("start") {
-    val executorService = Executors.newFixedThreadPool(10)
-    val ringBufferWheel = new RingBufferWheel(executorService, 4)
-    ringBufferWheel.start()
+
     val task = new com.github.ubiquitous.wheel.Task(10) {
       override def run(): Unit = {
         println("running")
       }
     }
 
-    ringBufferWheel.addTask(task)
+    WheelFactory.addDelayTask(task)
     while (true) {
 
     }

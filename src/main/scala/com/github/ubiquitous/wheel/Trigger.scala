@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicInteger
   *
   * @author Namhwik on 2020-04-15 15:49
   */
-class Trigger(wheel: RingBufferWheel) extends Runnable {
+class Trigger(wheel: Wheel, timeUnit: TimeUnit) extends Runnable {
 
   private val tick = wheel.tick
 
@@ -20,11 +20,20 @@ class Trigger(wheel: RingBufferWheel) extends Runnable {
           tick.set(0)
         }
         val task = wheel.remove(index)
-        if (task != null && task.nonEmpty)
-          task.foreach(wheel.executorService.submit)
+        if (task != null && task.nonEmpty) {
+          timeUnit match {
+            case TimeUnit.SECONDS =>
+              task.foreach(Executor.submit)
+            case TimeUnit.MINUTES =>
+              task.map(t => t.setSpan(t.seconds)).foreach(WheelFactory.unitWheel(TimeUnit.SECONDS).get.addTask)
+            case TimeUnit.HOURS =>
+              task.map(t => t.setSpan(t.minutes)).foreach(WheelFactory.unitWheel(TimeUnit.MINUTES).get.addTask)
+          }
+        }
         //Total tick number of records
         tick.incrementAndGet()
-        TimeUnit.SECONDS.sleep(1)
+
+        timeUnit.sleep(1)
 
       } catch {
         case ex: Exception => ex.printStackTrace()

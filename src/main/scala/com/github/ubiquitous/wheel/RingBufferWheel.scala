@@ -1,6 +1,6 @@
 package com.github.ubiquitous.wheel
 
-import java.util.concurrent.ExecutorService
+import java.util.concurrent.{ExecutorService, TimeUnit}
 import java.util.concurrent.atomic.AtomicInteger
 
 import com.github.ubiquitous.wheel.Task
@@ -15,19 +15,18 @@ import scala.collection.mutable
   *
   * @author Namhwik on 2020-04-15 16:09
   */
-class RingBufferWheel(
-                       val executorService: ExecutorService,
-                       val bufferSize: Int
-                     ) {
+class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
+
+  override val bufferSize: Int = bfsize
+
+
   val wheel: Array[mutable.Set[Task]] = new Array[mutable.Set[Task]](bufferSize)
-  var stop: Boolean = false
-  val tick = new AtomicInteger(0)
 
   private val lock: ReentrantLock = new ReentrantLock
 
 
   def addTask(task: Task): Int = {
-    val key = task.span
+    val key = task.dl
     task.cycle = cycleNum(key, bufferSize)
 
     try {
@@ -42,12 +41,12 @@ class RingBufferWheel(
   }
 
   def start(): Unit = {
-    val trigger = new Thread(new Trigger(this))
+    val trigger = new Thread(new Trigger(this, timeUnit))
     trigger.setName("buffer trigger thread")
     trigger.start()
   }
 
-  def remove(index: Int): Set[Task] = {
+  override def remove(index: Int): Set[Task] = {
     try {
       lock.lock()
       val tasks = wheel(index)
@@ -64,18 +63,19 @@ class RingBufferWheel(
     target >> Integer.bitCount(mod - 1)
   }
 
-  private def get(key: Int): mutable.Set[Task] = {
-    val index = mod(key, bufferSize)
-    wheel(index)
-  }
-
-  private def put(key: Int, tasks: mutable.Set[Task]): Unit = {
-    val index = mod(key, bufferSize)
-    wheel(index) = tasks
-  }
 
   private def mod(target: Int, mod: Int) = { // equals target % mod
     (target + tick.get) & (mod - 1)
   }
 
+
+  override def get(key: Int): mutable.Set[Task] = {
+    val index = mod(key, bufferSize)
+    wheel(index)
+  }
+
+  override def put(key: Int, tasks: mutable.Set[Task]): Unit = {
+    val index = mod(key, bufferSize)
+    wheel(index) = tasks
+  }
 }
