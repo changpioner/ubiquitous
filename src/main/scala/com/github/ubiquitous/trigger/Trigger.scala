@@ -38,12 +38,14 @@ class Trigger(wheel: Wheel, timeUnit: TimeUnit) extends Runnable {
               logger.debug("moving task to seconds wheel ...")
               val (nextWheelTasks, toRunTasks) = task.map(t => t.setSpan(t.seconds)).partition(_.span > 0)
               toRunTasks.foreach(t => Executor.submit(t))
-              nextWheelTasks.foreach(task => {
-                WheelFactory.unitWheel(TimeUnit.SECONDS).get.addTask(task)
-              })
+              nextWheelTasks.foreach(task => WheelFactory.unitWheel(TimeUnit.SECONDS).get.addTask(task))
             case TimeUnit.HOURS =>
               logger.debug("moving task to minutes wheel ...")
-              task.map(t => t.setSpan(t.minutes)).foreach(WheelFactory.unitWheel(TimeUnit.MINUTES).get.addTask)
+              val (nextWheelTasks, toSecondTasks) = task.map(t => t.setSpan(t.minutes)).partition(_.span > 0)
+              nextWheelTasks.foreach(WheelFactory.unitWheel(TimeUnit.MINUTES).get.addTask)
+              val (secondTasks, toRunTasks) = toSecondTasks.map(t => t.setSpan(t.seconds)).partition(_.span > 0)
+              secondTasks.foreach(task => WheelFactory.unitWheel(TimeUnit.SECONDS).get.addTask(task))
+              toRunTasks.foreach(t => Executor.submit(t))
           }
         }
 
