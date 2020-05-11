@@ -1,6 +1,8 @@
 package com.github.ubiquitous.wheel
 
-import java.util.concurrent.Callable
+import java.util.concurrent.{Callable, TimeUnit}
+
+import com.github.ubiquitous.config.Conf.TIME_UNIT
 
 /**
   *
@@ -12,11 +14,14 @@ abstract class Task[T](val dl: Int) extends Callable[T] {
 
   var cycle: Int = _
 
-  val seconds: Int = dl % 60
-
-  val minutes: Int = (dl / 60) % 60
-
-  val hours: Int = dl / 3600
+  val (seconds, minutes, hours) = TIME_UNIT match {
+    case TimeUnit.SECONDS =>
+      (dl % 60, (dl / 60) % 60, dl / 3600)
+    case TimeUnit.MINUTES =>
+      (0, dl % 60, (dl / 60) % 60)
+    case TimeUnit.HOURS =>
+      (0, 0, dl % 60)
+  }
 
   def setSpan(sp: Int): Task[T] = {
     span = sp

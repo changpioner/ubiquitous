@@ -12,10 +12,10 @@ object Executor {
 
   private val executorService: ExecutorService =
     new ThreadPoolExecutor(4, 15, 10L,
-      TimeUnit.SECONDS, new LinkedBlockingQueue[Runnable]())
+      TimeUnit.SECONDS, new LinkedBlockingQueue[Runnable](2))
 
   //TODO 根据延时任务的精度控制池子的大小
-  private val triggerExecutor = new ThreadPoolExecutor(3, 3, 0L,
+  private val triggerExecutor = new ThreadPoolExecutor(1, 1, 0L,
     TimeUnit.SECONDS, new LinkedBlockingQueue[Runnable](), new TriggerThreadFactory)
 
   def submit(task: Runnable): Unit = {

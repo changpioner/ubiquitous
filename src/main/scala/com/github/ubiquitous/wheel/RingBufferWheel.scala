@@ -3,8 +3,6 @@ package com.github.ubiquitous.wheel
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 
-import com.github.ubiquitous.exe.Executor
-import com.github.ubiquitous.trigger.Trigger
 import org.apache.log4j.Logger
 
 import scala.collection.mutable
@@ -46,11 +44,11 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
     key
   }
 
-  def start(): Unit = {
-    val trigger = new Trigger(this, this.timeUnit)
-    logger.info(s"${this.timeUnit} trigger starting ...")
-    Executor.addTrigger(trigger)
-  }
+  //  def start(): Unit = {
+  //    val trigger = new Trigger(this, this.timeUnit)
+  //    logger.info(s"${this.timeUnit} trigger starting ...")
+  //    Executor.addTrigger(trigger)
+  //  }
 
   override def remove(index: Int): Set[Task[Any]] = {
     try {
@@ -75,4 +73,6 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
     val index = mod(key, bufferSize)
     wheel(index) = tasks
   }
+
+  override def getTimeUnit: TimeUnit = timeUnit
 }

@@ -1,7 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7ba471a4-8f2a-4a8e-b597-35f5956f0deb" name="Default Changelist" comment="" />
+    <list default="true" id="7ba471a4-8f2a-4a8e-b597-35f5956f0deb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/properties.conf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/config/Conf.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_15_SNAPSHOT.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_codec_commons_codec_1_15_SNAPSHOT.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/scala/WheelTest.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/scala/WheelTest.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$4.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger$$anonfun$run$5.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/trigger/Trigger.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/RingBufferWheel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/RingBufferWheel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory$$anonfun$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory$$anonfun$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory$.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory$.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/github/ubiquitous/wheel/WheelFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1$$anon$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest$$anonfun$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/WheelTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/WheelTest.class" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,47 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-173">
-              <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="364">
-              <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
-              <folding>
-                <element signature="e#39#75#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="127">
-              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="76" column="3" lean-forward="true" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+            <state relative-caret-position="236">
+              <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
               <folding>
                 <element signature="e#37#73#0" expanded="true" />
               </folding>
@@ -66,10 +57,64 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Wheel.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+            <state relative-caret-position="292">
+              <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/config/Conf.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="292">
+              <caret line="12" column="61" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
+              <folding>
+                <element signature="e#38#74#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/properties.conf">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="400">
+              <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
+              <folding>
+                <element signature="e#39#75#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/scala/WheelTest.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
+              <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+              <folding>
+                <element signature="e#0#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="473">
+              <caret line="25" selection-start-line="25" selection-end-line="25" />
               <folding>
                 <element signature="e#37#85#0" expanded="true" />
               </folding>
@@ -78,19 +123,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/TriggerThreadFactory.scala">
+        <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadPoolExecutor.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42120">
-              <caret line="1230" column="46" selection-start-line="1230" selection-start-column="46" selection-end-line="1230" selection-end-column="46" />
+            <state relative-caret-position="-1012">
+              <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
+              <folding>
+                <element signature="e#37#73#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -118,6 +157,9 @@
       <find>added</find>
       <find>execute</find>
       <find>move</find>
+      <find>finished</find>
+      <find>Got tasks</find>
+      <find>submit task</find>
     </findStrings>
     <replaceStrings>
       <replace>logger.warn</replace>
@@ -131,19 +173,22 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/MinutesWheel.scala" />
         <option value="$PROJECT_DIR$/src/main/resources/log.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Wheel.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala" />
-        <option value="$PROJECT_DIR$/src/test/scala/WheelTest.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala" />
-        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/TriggerThreadFactory.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Trigger.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Executor.scala" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/config/Config.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/config/Conf.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala" />
+        <option value="$PROJECT_DIR$/src/main/resources/properties.conf" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala" />
+        <option value="$PROJECT_DIR$/src/test/scala/WheelTest.scala" />
+        <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala" />
         <option value="$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala" />
       </list>
     </option>
@@ -155,9 +200,9 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
-    <option name="width" value="2560" />
-    <option name="height" value="1440" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1792" />
+    <option name="height" value="1120" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -370,41 +415,42 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="WheelTest_start - 2020.05.10 at 12h 57m 19s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 01m 43s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 13h 04m 00s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 04m 04s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 13h 10m 01s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 12m 36s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 15h 38m 11s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 16m 32s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 15h 40m 06s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 19m 16s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 15h 45m 27s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 25m 55s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 16h 07m 12s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 32m 18s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 16h 07m 35s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 37m 03s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 16h 23m 41s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 40m 31s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
-    <history-entry file="WheelTest_start - 2020.05.10 at 18h 02m 29s.xml">
+    <history-entry file="WheelTest_start - 2020.05.11 at 18h 46m 36s.xml">
       <configuration name="WheelTest.start" configurationId="ScalaTestRunConfiguration" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1792" height="1120" extended-state="6" />
+    <frame x="0" y="0" width="1792" height="1120" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19371429" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19371429" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -414,16 +460,16 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4181818" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.47142857" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Alibaba Cloud View" order="7" />
       <window_info anchor="bottom" id="Version Control" order="8" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="9" visible="true" weight="0.25047618" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.34761906" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32846716" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32761905" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -441,21 +487,27 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala</url>
-          <line>36</line>
+          <line>56</line>
           <properties />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala</url>
-          <line>27</line>
+          <line>36</line>
           <properties />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala</url>
-          <line>24</line>
+          <line>33</line>
           <properties />
           <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala</url>
+          <line>111</line>
+          <properties />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -471,13 +523,6 @@
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/MinutesWheel.scala" />
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1332">
-          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-        </state>
-      </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.12-sources.jar!/scala/Option.scala">
       <provider selected="true" editor-type-id="text-editor">
@@ -548,16 +593,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/scala/WheelTest.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="557">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#0#47#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/concurrent/ThreadFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
@@ -569,13 +604,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="723" column="8" selection-start-line="723" selection-start-column="8" selection-end-line="723" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/concurrent/Executor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="139" column="9" selection-start-line="139" selection-start-column="9" selection-end-line="139" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -604,20 +632,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/TriggerThreadFactory.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Executor.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="443">
@@ -628,44 +642,119 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala">
+    <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="10" column="7" selection-start-line="10" selection-start-column="7" selection-end-line="10" selection-end-column="7" />
+        <state relative-caret-position="595">
+          <caret line="37" column="21" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Wheel.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/TriggerThreadFactory.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="714">
-          <caret line="24" column="39" selection-start-line="24" selection-start-column="39" selection-end-line="24" selection-end-column="39" />
+        <state relative-caret-position="288">
+          <caret line="11" column="6" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/src.zip!/java/util/concurrent/Executor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="127" column="17" selection-start-line="127" selection-start-column="17" selection-end-line="127" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/config/Conf.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="12" column="61" selection-start-line="12" selection-start-column="61" selection-end-line="12" selection-end-column="61" />
+          <folding>
+            <element signature="e#38#74#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.12-sources.jar!/scala/collection/immutable/List.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="443" column="46" lean-forward="true" selection-start-line="443" selection-start-column="46" selection-end-line="443" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.ivy2/cache/org.scala-lang/scala-library/srcs/scala-library-2.11.12-sources.jar!/scala/package.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="61" column="39" lean-forward="true" selection-start-line="61" selection-start-column="39" selection-end-line="61" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Task.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="473">
+          <caret line="25" selection-start-line="25" selection-end-line="25" />
           <folding>
             <element signature="e#37#85#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala">
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/exe/Executor.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-173">
-          <caret line="15" column="35" selection-start-line="15" selection-start-column="35" selection-end-line="15" selection-end-column="35" />
+        <state relative-caret-position="292">
+          <caret line="14" column="59" selection-start-line="14" selection-start-column="59" selection-end-line="14" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/scala/WheelTest.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/Wheel.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="24" column="6" selection-start-line="24" selection-start-column="6" selection-end-line="24" selection-end-column="6" />
+          <folding>
+            <element signature="e#37#85#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/RingBufferWheel.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="76" column="3" lean-forward="true" selection-start-line="76" selection-start-column="3" selection-end-line="76" selection-end-column="3" />
+        <state relative-caret-position="-1012">
+          <caret line="23" column="8" selection-start-line="23" selection-start-column="8" selection-end-line="23" selection-end-column="8" />
           <folding>
             <element signature="e#37#73#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/wheel/WheelFactory.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="46" column="18" lean-forward="true" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
+          <folding>
+            <element signature="e#37#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/properties.conf">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="1" column="24" selection-start-line="1" selection-start-column="24" selection-end-line="1" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/scala/com/github/ubiquitous/trigger/Trigger.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="39" column="57" lean-forward="true" selection-start-line="39" selection-start-column="57" selection-end-line="39" selection-end-column="57" />
+        <state relative-caret-position="400">
+          <caret line="99" column="19" lean-forward="true" selection-start-line="99" selection-start-column="19" selection-end-line="99" selection-end-column="19" />
           <folding>
             <element signature="e#39#75#0" expanded="true" />
           </folding>

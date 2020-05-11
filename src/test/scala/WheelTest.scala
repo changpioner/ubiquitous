@@ -1,3 +1,6 @@
+import java.text.SimpleDateFormat
+import java.util.Date
+
 import com.github.ubiquitous.wheel.WheelFactory
 import org.scalatest.FunSuite
 
@@ -7,27 +10,35 @@ import org.scalatest.FunSuite
   */
 class WheelTest extends FunSuite {
   test("start") {
+    WheelFactory.start()
+    val startDate = new Date()
+    println(s"  ** start ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(startDate)}")
 
-    val task = new com.github.ubiquitous.wheel.Task[Unit](65) {
+    val task = new com.github.ubiquitous.wheel.Task[Unit](23) {
       override def call(): Unit = {
-        println("running")
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
     }
 
-    val task1 = new com.github.ubiquitous.wheel.Task[Unit](25) {
+    val task1 = new com.github.ubiquitous.wheel.Task[Unit](2) {
       override def call(): Unit = {
-        println("running")
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
     }
 
-    val task2 = new com.github.ubiquitous.wheel.Task[Unit](1) {
+    val task2 = new com.github.ubiquitous.wheel.Task[Unit](60) {
       override def call(): Unit = {
-        println("running 11")
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
     }
-    val task3 = new com.github.ubiquitous.wheel.Task[Unit](60) {
+    val task3 = new com.github.ubiquitous.wheel.Task[Unit](0) {
       override def call(): Unit = {
-        println("running 11")
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
+      }
+    }
+    val task4 = new com.github.ubiquitous.wheel.Task[Unit](65) {
+      override def call(): Unit = {
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
     }
 
@@ -36,6 +47,7 @@ class WheelTest extends FunSuite {
     WheelFactory.addDelayTask(task1)
     WheelFactory.addDelayTask(task2)
     WheelFactory.addDelayTask(task3)
+    WheelFactory.addDelayTask(task4)
     while (true) {
 
     }

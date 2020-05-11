@@ -3,6 +3,7 @@ package com.github.ubiquitous.wheel
 import java.util.concurrent.atomic.AtomicInteger
 
 import scala.collection.mutable
+import scala.concurrent.duration.TimeUnit
 
 /**
   *
@@ -27,5 +28,7 @@ trait Wheel {
   def mod(target: Int, mod: Int): Int = { // equals target % mod
     (target + tick.get) & (mod - 1)
   }
+
+  def getTimeUnit: TimeUnit
 
 }
