@@ -14,17 +14,17 @@ trait Wheel {
 
   var stop: Boolean = false
 
-  private def cycleNum(target: Int, mod: Int) = { //equals target/mod
+  def cycleNum(target: Int, mod: Int): Int = { //equals target/mod
     target >> Integer.bitCount(mod - 1)
   }
 
-  def get(key: Int): mutable.Set[Task]
+  def get(key: Int): mutable.Set[Task[Any]]
 
-  def put(key: Int, tasks: mutable.Set[Task])
+  def put(key: Int, tasks: mutable.Set[Task[Any]])
 
-  def remove(index: Int): Set[Task]
+  def remove(index: Int): Set[Task[Any]]
 
-  private def mod(target: Int, mod: Int) = { // equals target % mod
+  def mod(target: Int, mod: Int): Int = { // equals target % mod
     (target + tick.get) & (mod - 1)
   }
 

@@ -1,13 +1,11 @@
 package com.github.ubiquitous.wheel
 
-import java.util.concurrent.{ExecutorService, TimeUnit}
-import java.util.concurrent.atomic.AtomicInteger
-
-import com.github.ubiquitous.wheel.Task
-
-import scala.collection.mutable.ArrayBuffer
-import java.util.concurrent.locks.Lock
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
+
+import com.github.ubiquitous.exe.Executor
+import com.github.ubiquitous.trigger.Trigger
+import org.apache.log4j.Logger
 
 import scala.collection.mutable
 
@@ -20,33 +18,41 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
   override val bufferSize: Int = bfsize
 
 
-  val wheel: Array[mutable.Set[Task]] = new Array[mutable.Set[Task]](bufferSize)
+  val wheel = new Array[mutable.Set[Task[Any]]](bufferSize)
 
   private val lock: ReentrantLock = new ReentrantLock
+  private val logger = Logger.getLogger(this.getClass)
 
-
-  def addTask(task: Task): Int = {
-    val key = task.dl
-    task.cycle = cycleNum(key, bufferSize)
+  def addTask[T](task: Task[T]): Int = {
+    logger.info(s"wheel : $timeUnit adding task : $task")
+    val key = task.span
 
     try {
       lock.lock()
-      val tasks = get(key)
+      task.cycle = cycleNum(key, bufferSize)
+      val tasks: mutable.Set[Task[Any]] = get(key)
       if (tasks != null)
-        tasks += task
+        tasks += task.asInstanceOf[Task[Any]]
       else
-        put(key, mutable.Set(task))
-    } finally lock.unlock()
+        put(key, mutable.Set[Task[Any]](task.asInstanceOf[Task[Any]]))
+      logger.debug(s"added :\n ${wheel.mkString("\n")}")
+    } catch {
+      case ex: Exception =>
+        ex.printStackTrace()
+    }
+
+    finally lock.unlock()
+
     key
   }
 
   def start(): Unit = {
-    val trigger = new Thread(new Trigger(this, timeUnit))
-    trigger.setName("buffer trigger thread")
-    trigger.start()
+    val trigger = new Trigger(this, this.timeUnit)
+    logger.info(s"${this.timeUnit} trigger starting ...")
+    Executor.addTrigger(trigger)
   }
 
-  override def remove(index: Int): Set[Task] = {
+  override def remove(index: Int): Set[Task[Any]] = {
     try {
       lock.lock()
       val tasks = wheel(index)
@@ -59,22 +65,13 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
     } finally lock.unlock()
   }
 
-  private def cycleNum(target: Int, mod: Int) = { //equals target/mod
-    target >> Integer.bitCount(mod - 1)
-  }
 
-
-  private def mod(target: Int, mod: Int) = { // equals target % mod
-    (target + tick.get) & (mod - 1)
-  }
-
-
-  override def get(key: Int): mutable.Set[Task] = {
+  override def get(key: Int): mutable.Set[Task[Any]] = {
     val index = mod(key, bufferSize)
     wheel(index)
   }
 
-  override def put(key: Int, tasks: mutable.Set[Task]): Unit = {
+  override def put(key: Int, tasks: mutable.Set[Task[Any]]): Unit = {
     val index = mod(key, bufferSize)
     wheel(index) = tasks
   }
