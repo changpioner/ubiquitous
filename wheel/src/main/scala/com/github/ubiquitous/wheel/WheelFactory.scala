@@ -2,9 +2,11 @@ package com.github.ubiquitous.wheel
 
 import java.util.concurrent.TimeUnit
 
+import com.github.ubiquitous.config.Conf
 import com.github.ubiquitous.config.Conf.TIME_UNIT
 import com.github.ubiquitous.exe.Executor
-import com.github.ubiquitous.trigger.Trigger
+import com.github.ubiquitous.exe.Executor.TRIGGER_CORE_SIZE
+import com.github.ubiquitous.trigger.{MultipleTrigger, Trigger}
 import org.apache.log4j.Logger
 
 /**
@@ -12,7 +14,10 @@ import org.apache.log4j.Logger
   * @author Namhwik on 2020-04-28 18:01
   */
 object WheelFactory {
+
   private val logger: Logger = Logger.getLogger(this.getClass)
+
+
   val DEFAULT_BUFFER_SIZE = 8
 
   val tuList: List[TimeUnit] = List(TimeUnit.SECONDS, TimeUnit.MINUTES, TimeUnit.HOURS)
@@ -59,9 +64,18 @@ object WheelFactory {
   }
 
   def start(): Unit = {
-    val trigger = new Trigger(TIME_UNIT)
-    logger.info(s"$TIME_UNIT trigger starting ...")
-    Executor.addTrigger(trigger)
+
+    Conf.getString("triggerMod") match {
+      case "single" =>
+        logger.info(s"$TIME_UNIT trigger starting ...")
+        Executor.addTrigger(new Trigger(TIME_UNIT))
+      case "multiple" =>
+        tuList.map(t => new MultipleTrigger(WheelFactory.unitWheel(t).get, t)).foreach(Executor.addTrigger)
+      case _ =>
+        throw new IllegalArgumentException(s"trigger mod does not support ${Conf.getString("triggerMod")}")
+    }
+
+
   }
 
   def close(): Unit = {
