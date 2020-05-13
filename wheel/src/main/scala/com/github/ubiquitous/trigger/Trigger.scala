@@ -97,7 +97,6 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
         }
       }
 
-      //Logger.getLogger(this.getClass).info("go to sleep ...")
       timeUnit.sleep(1)
 
 

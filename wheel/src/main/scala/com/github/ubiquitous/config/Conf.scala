@@ -10,7 +10,7 @@ import com.typesafe.config.{Config, ConfigFactory}
   */
 object Conf {
 
-  private val config: Config = ConfigFactory.load("properties")
+  val config: Config = ConfigFactory.load("properties")
 
 
   final val TIME_UNIT = config.getString("unit.granularity") match {
@@ -25,6 +25,9 @@ object Conf {
 
   def getString(k: String): String =
     config.getString(s"unit.$k")
+
+  def getInt(k: String): Int =
+    config.getInt(s"unit.$k")
 
 
   def assertSettings(): Unit = {
