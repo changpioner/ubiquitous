@@ -18,7 +18,7 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
 
   val wheel = new Array[mutable.Set[Task[Any]]](bufferSize)
 
-  private val lock: ReentrantLock = new ReentrantLock
+
   private val logger = Logger.getLogger(this.getClass)
 
   def addTask[T](task: Task[T]): Int = {
@@ -28,12 +28,14 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
     try {
       lock.lock()
       task.cycle = cycleNum(key, bufferSize)
+      if (mod(key, bufferSize) == tick.get())
+        task.cycle -= 1
       val tasks: mutable.Set[Task[Any]] = get(key)
       if (tasks != null)
         tasks += task.asInstanceOf[Task[Any]]
       else
         put(key, mutable.Set[Task[Any]](task.asInstanceOf[Task[Any]]))
-      logger.debug(s"added :\n ${wheel.mkString("\n")}")
+      logger.debug(s" current tick: ${tick.get} ,added :\n ${wheel.mkString("\n")}")
     } catch {
       case ex: Exception =>
         ex.printStackTrace()

@@ -23,8 +23,9 @@ object HbaseUtil {
   //1.获得Configuration实例并进行相关设置//1.获得Configuration实例并进行相关设置
 
   val configuration: Configuration = HBaseConfiguration.create
-  //configuration.set("hbase.zookeeper.quorum", "172.16.12.25:2181")
-  //configuration.set("hbase.master", "172.16.12.24:16000")
+  configuration.set("hbase.zookeeper.quorum", "myhbase")
+  configuration.set("hbase.zookeeper.property.clientPort","2181")
+  configuration.set("hbase.master", "localhost:16010")
   //2.获得Connection实例
   val connection: Connection = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(configuration)
   //3.1获得Admin接口

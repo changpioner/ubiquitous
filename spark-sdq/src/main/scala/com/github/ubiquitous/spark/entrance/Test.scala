@@ -13,11 +13,12 @@ object Test {
   def main(args: Array[String]): Unit = {
     val spark = SparkSession.builder().
       appName("test")
-      .master("local[4]")
+      .master("local[3]")
       .getOrCreate()
     import spark.implicits._
     val ds = spark.range(100).map(_.toString)
     // val kafkaSink = spark.sparkContext.broadcast(new KafkaSink(() => new KafkaProducer[String, String](new java.util.Properties())))
     ds.foreach(s => DlTask(s.toInt, s, s)(null.asInstanceOf[KafkaProducer[String, String]]).schedule())
+    ds.show()
   }
 }

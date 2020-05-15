@@ -82,4 +82,6 @@ object WheelFactory {
 
   }
 
+  start()
+
 }

@@ -1,6 +1,7 @@
 package com.github.ubiquitous.wheel
 
 import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.locks.ReentrantLock
 
 import scala.collection.mutable
 import scala.concurrent.duration.TimeUnit
@@ -12,6 +13,8 @@ import scala.concurrent.duration.TimeUnit
 trait Wheel {
   val bufferSize: Int
   val tick = new AtomicInteger(0)
+
+  val lock: ReentrantLock = new ReentrantLock
 
   var stop: Boolean = false
 

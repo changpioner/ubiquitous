@@ -102,7 +102,10 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
 
     } catch {
       case ex: Exception => ex.printStackTrace()
+    } finally {
+
     }
+
   }
 
 

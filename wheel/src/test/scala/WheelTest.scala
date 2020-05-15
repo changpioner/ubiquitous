@@ -9,9 +9,10 @@ import org.scalatest.FunSuite
   * @author Namhwik on 2020-04-15 17:12
   */
 class WheelTest extends FunSuite {
+  val startDate = new Date()
+
   test("start") {
-    WheelFactory.start()
-    val startDate = new Date()
+    //WheelFactory.start()
     println(s"  ** start ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(startDate)}")
 
     val task = new com.github.ubiquitous.wheel.Task[Unit](23) {
@@ -51,6 +52,20 @@ class WheelTest extends FunSuite {
     while (true) {
 
     }
+  }
+
+  test("wheelSizeTask") {
+
+    val tasks = (0 until 100).map(i => new com.github.ubiquitous.wheel.Task[Unit](i) {
+      override def call(): Unit = {
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $i finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
+      }
+    })
+
+    tasks.foreach(WheelFactory.addDelayTask)
+
+
+    Thread.sleep(120000)
   }
 
 }
