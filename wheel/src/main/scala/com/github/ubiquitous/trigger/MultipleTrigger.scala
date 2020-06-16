@@ -22,7 +22,10 @@ class MultipleTrigger(wheel: Wheel, timeUnit: TimeUnit) extends Runnable {
           0
         } else
         //Total tick number of records
-          tick.incrementAndGet()
+          tick.getAndIncrement()
+
+        timeUnit.sleep(1)
+
         val task = wheel.remove(index)
         logger.debug(s"current running index :$index")
         logger.debug(s"Got tasks : ${if (task == null) "null" else task.mkString(" , ")}")
@@ -47,7 +50,6 @@ class MultipleTrigger(wheel: Wheel, timeUnit: TimeUnit) extends Runnable {
         }
 
         //Logger.getLogger(this.getClass).info("go to sleep ...")
-        timeUnit.sleep(1)
 
 
       } catch {

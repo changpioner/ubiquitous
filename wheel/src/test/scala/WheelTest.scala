@@ -80,6 +80,10 @@ class WheelTest extends FunSuite {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $i finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
+
+      override def persist(): Boolean = {
+        true
+      }
     })
 
     tasks.foreach(WheelFactory.addDelayTask)

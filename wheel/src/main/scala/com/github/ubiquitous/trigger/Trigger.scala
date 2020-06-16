@@ -41,7 +41,7 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
     * @param wheelFactory
     */
   def push(timeUnit: TimeUnit, tasks: Set[Task[Any]])(implicit wheelFactory: WheelFactory.type): Unit = {
-
+    logger.debug("moving task to next wheel ...")
     if ( {
       timeUnit match {
         case TimeUnit.MINUTES => TimeUnit.SECONDS
