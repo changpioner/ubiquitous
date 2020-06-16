@@ -34,6 +34,7 @@ abstract class DelayTask[K, V](dl: Int, k: K, var msg: V)
             CH_COL_META -> msg
           )
         )
+        clearV(k, msg)
         true
       } catch {
         case ex: Exception =>
@@ -44,8 +45,7 @@ abstract class DelayTask[K, V](dl: Int, k: K, var msg: V)
     }
   }
 
-  def persistKey[KT, VT](key: KT, v: VT): Unit = {
-
+  def clearV[KT, VT](key: KT, v: VT): Unit = {
     msg = null.asInstanceOf[V]
   }
 
