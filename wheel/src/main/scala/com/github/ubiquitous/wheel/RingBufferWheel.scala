@@ -36,6 +36,7 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
       else
         put(key, mutable.Set[Task[Any]](task.asInstanceOf[Task[Any]]))
       logger.debug(s" current tick: ${tick.get} ,added :\n ${wheel.mkString("\n")}")
+      task.persist()
     } catch {
       case ex: Exception =>
         ex.printStackTrace()
