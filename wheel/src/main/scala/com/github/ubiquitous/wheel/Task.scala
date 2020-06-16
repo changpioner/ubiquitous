@@ -12,8 +12,6 @@ import com.github.ubiquitous.config.Conf.TIME_UNIT
 abstract class Task[T](val dl: Int) extends Callable[T] {
 
 
-  var cacheKey: Any = _
-
   var span: Int = dl
 
   var cycle: Int = _
@@ -31,6 +29,8 @@ abstract class Task[T](val dl: Int) extends Callable[T] {
     span = sp
     this
   }
+
+  def persist(): Boolean
 
   override def toString: String = s"cycle : $cycle,dl :$dl ,span : $span , seconds : $seconds ,minutes :$minutes , hours : $hours"
 
