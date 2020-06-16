@@ -12,6 +12,13 @@
         <scala.binary.version>2.11</scala.binary.version>
         <hbase.version>1.1.2</hbase.version>
     </properties>
+    <distributionManagement>
+        <repository>
+            <id>data-repository</id>
+            <name>data-repository</name>
+            <url>scp://jd100node1/opt/apache-tomcat-9.0.16/webapps/ROOT</url>
+        </repository>
+    </distributionManagement>
     <dependencies>
         <dependency>
             <groupId>org.apache.spark</groupId>
@@ -40,6 +47,25 @@
             <groupId>io.monix</groupId>
             <artifactId>monix_2.11</artifactId>
             <version>2.0-RC13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>${hbase.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20180813</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.scalatest</groupId>
+            <artifactId>scalatest_2.11</artifactId>
+            <version>3.0.5</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
