@@ -3,34 +3,38 @@ package com.github.ubiquitous.spark.kafka
 import com.github.ubiquitous.config.Conf.config
 import com.github.ubiquitous.utils.HbaseUtil
 import com.github.ubiquitous.wheel.{Task, WheelFactory}
-import org.apache.kafka.clients.producer.{Producer, ProducerRecord}
 import org.apache.log4j.Logger
 
 /**
   *
   * @author Namhwik on 2020-05-13 14:43
   */
-abstract class DelayTask[K, V](dl: Int, k: K, var msg: V)
-  extends Task[Unit](dl: Int) {
+trait DelayTask[K, V] extends Task[Unit] {
 
-  private val logger: Logger = Logger.getLogger(this.getClass)
+  def msg_(m: V): Unit
 
-  private final val KEY_CACHE_TABLE = config.getString("cache.table")
-  private final val KEY_CACHE_FAMILY = config.getString("cache.family")
-  private final val KEY_CACHE_DELAY = config.getString("cache.delay")
-  private val PERSIST_V: Boolean = config.getBoolean("cache.ifPersistValue")
+  def msg: V
 
-  private final val CH_COL_META = "meta"
-  private final val CH_COL_TIME = "time"
+  def k: K
 
+  val logger: Logger
 
   override def persist(): Boolean = {
+
+    val KEY_CACHE_TABLE: String = config.getString("cache.table")
+    val KEY_CACHE_FAMILY: String = config.getString("cache.family")
+    val KEY_CACHE_DELAY: String = config.getString("cache.delay")
+    val PERSIST_V: Boolean = config.getBoolean("cache.ifPersistValue")
+
+    val CH_COL_META: String = config.getString("cache.meta")
+    val CH_COL_TIME: String = config.getString("cache.time")
+
     !PERSIST_V || {
       try {
         HbaseUtil.insertV2(KEY_CACHE_TABLE, k, KEY_CACHE_FAMILY,
           Map(
-            CH_COL_TIME -> System.currentTimeMillis(),
-            KEY_CACHE_DELAY -> dl,
+            CH_COL_TIME -> System.currentTimeMillis().toString,
+            KEY_CACHE_DELAY -> dl.toString,
             CH_COL_META -> msg
           )
         )
@@ -45,16 +49,12 @@ abstract class DelayTask[K, V](dl: Int, k: K, var msg: V)
     }
   }
 
-  def clearV[KT, VT](key: KT, v: VT): Unit = {
-    msg = null.asInstanceOf[V]
-  }
+  def clearV[KT, VT](key: KT, v: VT): Unit = msg_(null.asInstanceOf[V])
 
-  def removeKey[KT](key: KT): Unit = {
-    HbaseUtil.deleteV2(KEY_CACHE_TABLE, key)
-  }
 
-  def schedule(): Unit = {
-    WheelFactory.addDelayTask(this)
-  }
+  def removeKey[KT](key: KT): Unit = HbaseUtil.deleteV2(config.getString("cache.table"), key)
+
+
+  def schedule(): Unit = WheelFactory.addDelayTask(this)
 
 }

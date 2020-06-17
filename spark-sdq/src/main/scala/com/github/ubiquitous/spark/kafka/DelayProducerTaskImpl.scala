@@ -12,9 +12,8 @@ import org.apache.log4j.Logger
   */
 
 
-class DelayProducerTaskImpl(dl: Int, k: String, msg: String)(implicit producer: Producer[String, String]) extends
-  DelayTask[String, String](dl: Int, k: String, msg: String) {
-  val logger: Logger = Logger.getLogger(this.getClass)
+case class DelayProducerTaskImpl(delay: Int, key: String, var msg2Send: String)(implicit producer: Producer[String, String]) extends
+  DelayTask[String, String] {
   val startDate = new Date()
 
   override def call(): Unit = {
@@ -43,4 +42,14 @@ class DelayProducerTaskImpl(dl: Int, k: String, msg: String)(implicit producer: 
 
     println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $dl finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
   }
+
+  override def msg_(m: String): Unit = msg2Send = m
+
+  override def msg: String = msg2Send
+
+  override def k: String = key
+
+  override val logger: Logger = Logger.getLogger(this.getClass)
+
+  override def dl: Int = delay
 }
