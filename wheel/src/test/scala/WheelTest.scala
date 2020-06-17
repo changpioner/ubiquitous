@@ -15,7 +15,7 @@ class WheelTest extends FunSuite {
     //WheelFactory.start()
     println(s"  ** start ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(startDate)}")
 
-    val task = new com.github.ubiquitous.wheel.Task[Unit](23) {
+    val task = new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
@@ -23,9 +23,11 @@ class WheelTest extends FunSuite {
       override def persist(): Boolean = {
         true
       }
+
+      override def dl: Int = 23
     }
 
-    val task1 = new com.github.ubiquitous.wheel.Task[Unit](2) {
+    val task1 = new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
@@ -33,9 +35,11 @@ class WheelTest extends FunSuite {
       override def persist(): Boolean = {
         true
       }
+
+      override def dl: Int = 2
     }
 
-    val task2 = new com.github.ubiquitous.wheel.Task[Unit](60) {
+    val task2 = new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
@@ -43,8 +47,10 @@ class WheelTest extends FunSuite {
       override def persist(): Boolean = {
         true
       }
+
+      override def dl: Int = 60
     }
-    val task3 = new com.github.ubiquitous.wheel.Task[Unit](0) {
+    val task3 = new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
@@ -52,11 +58,15 @@ class WheelTest extends FunSuite {
       override def persist(): Boolean = {
         true
       }
+
+      override def dl: Int = 0
     }
-    val task4 = new com.github.ubiquitous.wheel.Task[Unit](65) {
+    val task4 = new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
+
+      override def dl: Int = 65
 
       override def persist(): Boolean = {
         true
@@ -76,7 +86,7 @@ class WheelTest extends FunSuite {
 
   test("wheelSizeTask") {
 
-    val tasks = (0 until 100).map(i => new com.github.ubiquitous.wheel.Task[Unit](i) {
+    val tasks = (0 until 100).map(i => new com.github.ubiquitous.wheel.Task[Unit] {
       override def call(): Unit = {
         println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $i finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
@@ -84,6 +94,8 @@ class WheelTest extends FunSuite {
       override def persist(): Boolean = {
         true
       }
+
+      override def dl: Int = i
     })
 
     tasks.foreach(WheelFactory.addDelayTask)

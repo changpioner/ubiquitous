@@ -2,15 +2,15 @@ package com.github.ubiquitous.wheel
 
 import java.util.concurrent.{Callable, TimeUnit}
 
-import com.github.ubiquitous.config.Conf
 import com.github.ubiquitous.config.Conf.TIME_UNIT
 
 /**
   *
   * @author Namhwik on 2020-04-15 16:12
   */
-abstract class Task[T](val dl: Int) extends Callable[T] {
+trait Task[T] extends Callable[T] {
 
+  def dl: Int
 
   var span: Int = dl
 
