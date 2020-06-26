@@ -3,6 +3,8 @@ package com.github.ubiquitous.spark.kafka
 import java.text.SimpleDateFormat
 import java.util.Date
 
+import com.github.ubiquitous.config.Conf.config
+import com.github.ubiquitous.spark.util.HbaseCacheUtil
 import org.apache.kafka.clients.producer.{Producer, ProducerRecord, RecordMetadata}
 import org.apache.log4j.Logger
 
@@ -20,7 +22,7 @@ case class DelayProducerTaskImpl(delay: Int, key: String, var msg2Send: String)(
     def send() = {
       producer.send(
         new ProducerRecord[String, String](k, msg),
-        new KafkaCacheKeyCallback[String, Unit](k, removeKey)
+        new KafkaCacheKeyCallback[String, Unit](k, delete)
       )
     }
 
@@ -52,4 +54,13 @@ case class DelayProducerTaskImpl(delay: Int, key: String, var msg2Send: String)(
   override val logger: Logger = Logger.getLogger(this.getClass)
 
   override def dl: Int = delay
+
+  override def insert(tableName: String, rowKey: Any, family: String, values: Map[String, Any]): Unit = {
+    HbaseCacheUtil.insertV2(tableName, rowKey, family, values)
+  }
+
+  override def delete[KT](key: KT): Unit = {
+    HbaseCacheUtil.delete(config.getString("cache.table"), key.asInstanceOf[String])
+  }
+
 }

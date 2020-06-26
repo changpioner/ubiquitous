@@ -16,33 +16,40 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
 
 
   private val logger = Logger.getLogger(this.getClass)
+
+  private var start: Boolean = _
+
   implicit val executor: Executor.type = Executor
   implicit val wheelFactory: WheelFactory.type = WheelFactory
 
 
   private var s: Int = 0
   private var m: Int = 0
-  private var h: Int = 0
+  //private var h: Int = 0
 
   override def run(): Unit = {
-
-    while (true) {
-      step().foreach((t: Wheel) => inWheel(t, t.getTimeUnit))
+    start = true
+    while (start) {
+      step().foreach(inWheel)
+      timeUnit.sleep(1)
     }
     logger.info(s"Task trigger : $timeUnit is stopped !")
 
   }
 
   /**
-    * 向下层时间轮推送任务
+    * Push the tasks to next level wheel
+    * If the accuracy of the time wheel is less than the set accuracy,
+    * run the tasks directly, else move the task to the next level time wheel
     *
-    * @param timeUnit
-    * @param tasks
-    * @param wheelFactory
+    * @param timeUnit     time unit of current wheel
+    * @param tasks        tasks to be moved
+    * @param wheelFactory WheelFactory
     */
   def push(timeUnit: TimeUnit, tasks: Set[Task[Any]])(implicit wheelFactory: WheelFactory.type): Unit = {
     logger.debug("moving task to next wheel ...")
     if ( {
+      // time unit of next level wheel
       timeUnit match {
         case TimeUnit.MINUTES => TimeUnit.SECONDS
         case TimeUnit.HOURS => TimeUnit.MINUTES
@@ -64,7 +71,15 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
     tasks.foreach(t => executor.submit(t))
   }
 
-  def inWheel(wheel: Wheel, tm: TimeUnit): Unit = {
+  /**
+    * Get tasks of the wheel , and partition the task list to run tasks and push tasks,
+    * run tasks will submit to the executor , push tasks will be pushed to next level wheel
+    *
+    * @param wheel Wheel
+    */
+  def inWheel(wheel: Wheel): Unit = {
+    //time unit of the wheel
+    val tm = wheel.getTimeUnit
     try {
       val tick = wheel.tick
       val index = if (tick.compareAndSet(wheel.bufferSize - 1, 0))
@@ -97,8 +112,6 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
         }
       }
 
-      timeUnit.sleep(1)
-
 
     } catch {
       case ex: Exception => ex.printStackTrace()
@@ -109,6 +122,11 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
   }
 
 
+  /**
+    * Start stepping from the time wheel at the lowest latitude
+    *
+    * @return List[Wheel] List of rotating time wheels
+    */
   def step(): List[Wheel] = {
 
     def addS(): Int = {
@@ -148,6 +166,9 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
 
 
   }
+
+
+  def stop(): Unit = start = false
 
 
 }

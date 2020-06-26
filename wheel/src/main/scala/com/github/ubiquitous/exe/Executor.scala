@@ -34,9 +34,10 @@ object Executor {
 
 
   private implicit val coreScheduler: Scheduler = Scheduler.apply(
+
     ExecutionContext.fromExecutor(
-      new ThreadPoolExecutor(2, MAX_POOL_SIZE, 10L,
-        TimeUnit.SECONDS, new SynchronousQueue[Runnable]())
+      new ThreadPoolExecutor(4, MAX_POOL_SIZE, 10L,
+        TimeUnit.SECONDS, new LinkedBlockingQueue[Runnable]())
     ))
   //根据延时任务的精度控制池子的大小
   private val triggerScheduler = ExecutionContext.fromExecutor(

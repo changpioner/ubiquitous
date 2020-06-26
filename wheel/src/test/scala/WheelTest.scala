@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 import java.util.Date
 
-import com.github.ubiquitous.wheel.WheelFactory
+import com.github.ubiquitous.wheel.{Task, WheelFactory}
 import org.scalatest.FunSuite
 
 /**
@@ -73,35 +73,38 @@ class WheelTest extends FunSuite {
       }
     }
 
-
-    WheelFactory.addDelayTask(task)
-    WheelFactory.addDelayTask(task1)
-    WheelFactory.addDelayTask(task2)
-    WheelFactory.addDelayTask(task3)
-    WheelFactory.addDelayTask(task4)
+    Array(task, task1, task2, task3, task4).foreach(WheelFactory.addDelayTask)
     while (true) {
 
     }
   }
 
   test("wheelSizeTask") {
+    case class TK(delay: Int, var msg: String) extends Task[Unit] {
+      override def dl: Int = delay
 
-    val tasks = (0 until 100).map(i => new com.github.ubiquitous.wheel.Task[Unit] {
+      override def persist(): Boolean = false
+
       override def call(): Unit = {
-        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $i finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
+        //Thread.sleep(delay * 1000)
+        println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $msg finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
       }
 
-      override def persist(): Boolean = {
-        true
+      override def equals(obj: Any): Boolean = super.equals(obj)
+    }
+    //val tasks = (0 until 1000).map(i => TK(i, i.toString))
+
+    (0 until 1000).foreach(
+      i => {
+        Thread.sleep(i * 1000)
+        WheelFactory.addDelayTask(TK(60, s"$i ...."))
       }
+    )
 
-      override def dl: Int = i
-    })
-
-    tasks.foreach(WheelFactory.addDelayTask)
+    // tasks.foreach(WheelFactory.addDelayTask)
 
 
-    Thread.sleep(120000)
+    Thread.sleep(7200000)
   }
 
 }

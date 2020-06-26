@@ -1,7 +1,7 @@
 package com.github.ubiquitous.spark.kafka
 
 import com.github.ubiquitous.config.Conf.config
-import com.github.ubiquitous.utils.HbaseUtil
+import com.github.ubiquitous.utils.CacheUtil
 import com.github.ubiquitous.wheel.{Task, WheelFactory}
 import org.apache.log4j.Logger
 
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger
   *
   * @author Namhwik on 2020-05-13 14:43
   */
-trait DelayTask[K, V] extends Task[Unit] {
+trait DelayTask[K, V] extends Task[Unit] with CacheUtil {
 
   def msg_(m: V): Unit
 
@@ -31,7 +31,7 @@ trait DelayTask[K, V] extends Task[Unit] {
 
     !PERSIST_V || {
       try {
-        HbaseUtil.insertV2(KEY_CACHE_TABLE, k, KEY_CACHE_FAMILY,
+        insert(KEY_CACHE_TABLE, k, KEY_CACHE_FAMILY,
           Map(
             CH_COL_TIME -> System.currentTimeMillis().toString,
             KEY_CACHE_DELAY -> dl.toString,
@@ -50,10 +50,6 @@ trait DelayTask[K, V] extends Task[Unit] {
   }
 
   def clearV[KT, VT](key: KT, v: VT): Unit = msg_(null.asInstanceOf[V])
-
-
-  def removeKey[KT](key: KT): Unit = HbaseUtil.deleteV2(config.getString("cache.table"), key)
-
 
   def schedule(): Unit = WheelFactory.addDelayTask(this)
 

@@ -1,13 +1,13 @@
-package com.github.ubiquitous.utils
+package com.github.ubiquitous.spark.util
 
 import java.io.IOException
 import java.nio.ByteBuffer
 import java.sql.Timestamp
 
 import org.apache.hadoop.conf.Configuration
-import org.apache.hadoop.hbase.{HBaseConfiguration, HColumnDescriptor, HTableDescriptor, TableName}
-import org.apache.hadoop.hbase.client.{Admin, Connection, Delete, Get, Put, Result, Scan}
+import org.apache.hadoop.hbase.client._
 import org.apache.hadoop.hbase.util.Bytes
+import org.apache.hadoop.hbase.{HBaseConfiguration, HColumnDescriptor, HTableDescriptor, TableName}
 import org.json.JSONObject
 
 import scala.collection.JavaConversions._
@@ -17,15 +17,15 @@ import scala.collection.mutable.ArrayBuffer
   * Created by Namhwik on 2018/7/31.
   */
 
-object HbaseUtil {
+object HbaseCacheUtil {
 
 
   //1.获得Configuration实例并进行相关设置//1.获得Configuration实例并进行相关设置
 
   val configuration: Configuration = HBaseConfiguration.create
-  configuration.set("hbase.zookeeper.quorum", "myhbase")
-  configuration.set("hbase.zookeeper.property.clientPort","2181")
-  configuration.set("hbase.master", "localhost:16010")
+//  configuration.set("hbase.zookeeper.quorum", "myhbase")
+//  configuration.set("hbase.zookeeper.property.clientPort","2181")
+//  configuration.set("hbase.master", "localhost:16010")
   //2.获得Connection实例
   val connection: Connection = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(configuration)
   //3.1获得Admin接口
