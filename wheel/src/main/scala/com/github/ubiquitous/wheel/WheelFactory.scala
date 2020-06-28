@@ -16,7 +16,7 @@ import org.apache.log4j.Logger
 object WheelFactory {
 
   private val logger: Logger = Logger.getLogger(this.getClass)
-
+  lazy private val trigger = new Trigger(TIME_UNIT)
 
   val DEFAULT_BUFFER_SIZE = 8
 
@@ -47,20 +47,20 @@ object WheelFactory {
                 if (task.seconds == 0)
                   Executor.submit(task)
                 else
-                  unitWheel(TimeUnit.SECONDS).get.addTask[T](task.setSpan(task.seconds))
+                  unitWheel(TimeUnit.SECONDS).get.addTask[T](task)
               }
               else
                 Executor.submit(task)
             case _ =>
-              unitWheel(TimeUnit.MINUTES).get.addTask[T](task.setSpan(task.minutes))
+              unitWheel(TimeUnit.MINUTES).get.addTask[T](task)
           }
         else {
           Executor.submit(task)
         }
       case _ =>
-        unitWheel(TimeUnit.HOURS).get.addTask[T](task.setSpan(task.hours))
+        unitWheel(TimeUnit.HOURS).get.addTask[T](task)
     }
-
+    task.createTrigger = (trigger.triggerMin, trigger.triggerSec)
   }
 
   def start(): Unit = {
@@ -68,7 +68,7 @@ object WheelFactory {
     Conf.getString("triggerMod") match {
       case "single" =>
         logger.info(s"$TIME_UNIT trigger starting ...")
-        Executor.addTrigger(new Trigger(TIME_UNIT))
+        Executor.addTrigger(trigger)
       case "multiple" =>
         tuList.map(t => new MultipleTrigger(WheelFactory.unitWheel(t).get, t)).foreach(Executor.addTrigger)
       case _ =>

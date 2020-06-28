@@ -1,14 +1,14 @@
 package com.github.ubiquitous.exe
 
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.concurrent._
 
 import com.github.ubiquitous.config.Conf
 import com.github.ubiquitous.trigger.{Trigger, TriggerThreadFactory}
-
 import monix.eval.Task
 import monix.execution.schedulers.ExecutionModel
 import monix.execution.{Scheduler, UncaughtExceptionReporter}
-
 import org.apache.log4j.Logger
 
 import scala.concurrent._
@@ -21,6 +21,8 @@ import scala.util.control.NonFatal
   * @author Namhwik on 2020-04-28 17:37
   */
 object Executor {
+
+  private val logger: Logger = Logger.getLogger(this.getClass)
 
   val MAX_POOL_SIZE: Int = Conf.getInt("maximumPoolSize")
 
@@ -47,7 +49,10 @@ object Executor {
 
   def submit(task: Runnable): Unit = executeBlockingIO(task.run())
 
-  def submit[T](task: Callable[T]): SFuture[T] = executeBlockingIO(task.call())
+  def submit[T](task: Callable[T]): SFuture[T] = {
+    logger.debug(s"[${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date())}] submit task $task")
+    executeBlockingIO(task.call())
+  }
 
   def submit[T](f: => T): SFuture[T] = executeBlockingIO(f)
 

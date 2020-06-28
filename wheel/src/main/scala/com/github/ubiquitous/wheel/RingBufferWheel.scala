@@ -23,12 +23,17 @@ class RingBufferWheel(val bfsize: Int, timeUnit: TimeUnit) extends Wheel {
 
   def addTask[T](task: Task[T]): Int = {
     logger.info(s"wheel : $timeUnit adding task : $task")
-    val key = task.span
+
+    val key = timeUnit match {
+      case TimeUnit.SECONDS => task.seconds
+      case TimeUnit.MINUTES => task.minutes
+      case TimeUnit.HOURS => task.hours
+    }
 
     try {
       lock.lock()
       task.cycle = cycleNum(key, bufferSize)
-      if (mod(key, bufferSize) == tick.get())
+      if (mod(key, bufferSize) == tick.get() && task.cycle != 0)
         task.cycle -= 1
       val tasks: mutable.Set[Task[Any]] = get(key)
       if (tasks != null)
