@@ -109,11 +109,14 @@ class Trigger(timeUnit: TimeUnit) extends Runnable {
         }
       case TimeUnit.HOURS =>
         //更改从小时时间轮到分钟时间轮的步数
-        val minutes = 0
-        //if (t.createTime._2 >= startMinute)
-        //t.minutes + t.createTime._2 - startMinute
-        //else
-        // t.minutes + 60 + t.createTime._2 - startMinute
+        calendar.setTime(new Date())
+        val nowMinute = calendar.get(Calendar.MINUTE)
+        val nowHour = calendar.get(Calendar.HOUR_OF_DAY)
+        val readyMinute = t.createTime._2 + t.minutes
+        val readyHour = t.createTime._1 + t.hours
+        val spendHour = if (readyHour - nowHour > 0) readyHour - nowHour else 0
+        val spendMinute = if (readyMinute - nowMinute >= 0) readyMinute - nowMinute else 60 - readyMinute + nowMinute
+        val minutes = spendHour * 60 + spendMinute
         TIME_UNIT match {
           case TimeUnit.SECONDS => t.setSpan(minutes * 60 + t.seconds)
           case TimeUnit.MINUTES => t.setSpan(minutes)

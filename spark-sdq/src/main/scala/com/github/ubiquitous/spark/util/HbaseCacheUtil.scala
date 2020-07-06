@@ -23,16 +23,13 @@ object HbaseCacheUtil {
   //1.获得Configuration实例并进行相关设置//1.获得Configuration实例并进行相关设置
 
   val configuration: Configuration = HBaseConfiguration.create
-//  configuration.set("hbase.zookeeper.quorum", "myhbase")
-//  configuration.set("hbase.zookeeper.property.clientPort","2181")
-//  configuration.set("hbase.master", "localhost:16010")
+  //  configuration.set("hbase.zookeeper.quorum", "myhbase")
+  //  configuration.set("hbase.zookeeper.property.clientPort","2181")
+  //  configuration.set("hbase.master", "localhost:16010")
   //2.获得Connection实例
   val connection: Connection = org.apache.hadoop.hbase.client.ConnectionFactory.createConnection(configuration)
   //3.1获得Admin接口
   val admin: Admin = connection.getAdmin
-  //3.2获得Table接口,需要传入表名
-  //val table: Table = connection.getTable( TableName.valueOf("t1"))
-  final val ROWKEY: String = "rowkey"
 
   def listTables(): Unit = {
     admin.listTableNames().foreach(println(_))

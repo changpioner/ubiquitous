@@ -40,9 +40,7 @@ case class DelayProducerTaskImpl(delay: Int, key: String, var msg2Send: String)(
           future = send()
       }
     }
-
-
-    println(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $dl finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
+    logger.info(s" after ${(new Date().getTime - startDate.getTime) / 1000} seconds , ** $dl finished ** ${new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.Sss").format(new Date())}")
   }
 
   override def msg_(m: String): Unit = msg2Send = m
