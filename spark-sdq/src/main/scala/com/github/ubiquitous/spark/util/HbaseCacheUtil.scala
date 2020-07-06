@@ -189,24 +189,6 @@ object HbaseCacheUtil {
     }
   }
 
-  def scan(tableName: String, family: String, columns: String*): Array[Map[String, String]] = {
-    val res = new ArrayBuffer[Map[String, String]]()
-    val table = connection.getTable(TableName.valueOf(tableName))
-    val scan = new Scan()
-    val familyBytes = Bytes.toBytes(family)
-    if (columns.nonEmpty)
-      columns.foreach(column => scan.addColumn(familyBytes, Bytes.toBytes(column)))
-    val result = table.getScanner(scan)
-    var next = result.next()
-    while (next != null) {
-      val valueMap = (next.getFamilyMap(familyBytes).toArray.map(t => (Bytes.toString(t._1), Bytes.toString(t._2)))
-        :+ (ROWKEY, Bytes.toString(next.getRow))).toMap
-      res.append(valueMap)
-      next = result.next()
-    }
-    res.toArray
-  }
-
 
   /**
     * 删除表中的指定行
