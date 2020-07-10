@@ -84,4 +84,15 @@ object WheelFactory {
 
   start()
 
+  def printTasks(): Unit = {
+    wheels.foreach {
+      x =>
+        try {
+          x._2.wheel.foreach(_.foreach(_._2.foreach(println)))
+        } catch {
+          case ex: Exception =>
+
+        }
+    }
+  }
 }

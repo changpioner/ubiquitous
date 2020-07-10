@@ -14,7 +14,6 @@ trait Wheel {
   val bufferSize: Int
   val tick = new AtomicInteger(0)
 
-  val lock: ReentrantLock = new ReentrantLock
 
   var stop: Boolean = false
 
@@ -22,9 +21,9 @@ trait Wheel {
     target >> Integer.bitCount(mod - 1)
   }
 
-  def get(key: Int): mutable.Set[Task[Any]]
+  def get(key: Int): mutable.Map[Int, mutable.Set[Task[Any]]]
 
-  def put(key: Int, tasks: mutable.Set[Task[Any]])
+  def put(key: Int, tasks: mutable.Map[Int, mutable.Set[Task[Any]]])
 
   def remove(index: Int): Set[Task[Any]]
 
