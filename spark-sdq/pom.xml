@@ -6,7 +6,7 @@
 
     <groupId>com.github.ubiquitous</groupId>
     <artifactId>spark-sdq</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <properties>
         <spark.version>2.3.0</spark.version>
         <scala.binary.version>2.11</scala.binary.version>
@@ -35,7 +35,7 @@
         <dependency>
             <groupId>com.github.ubiquitous</groupId>
             <artifactId>sdq</artifactId>
-            <version>1.0.0</version>
+            <version>1.1.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
