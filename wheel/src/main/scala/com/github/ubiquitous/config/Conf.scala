@@ -15,16 +15,12 @@ object Conf {
 
 
   lazy val TIME_UNIT: TimeUnit = {
-    if (WheelFactory.granularity != null)
-      {
-        println("get granularity from var")
-        WheelFactory.granularity
-      }
-    else
-      {
-        println("get granularity from properties")
-        config.getString("unit.granularity")
-      }
+    if (WheelFactory.granularity != null) {
+      WheelFactory.granularity
+    }
+    else {
+      config.getString("unit.granularity")
+    }
   }
   match {
     case "seconds" => TimeUnit.SECONDS
