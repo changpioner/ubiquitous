@@ -2,6 +2,7 @@ package com.github.ubiquitous.config
 
 import java.util.concurrent.TimeUnit
 
+import com.github.ubiquitous.wheel.WheelFactory
 import com.typesafe.config.{Config, ConfigFactory}
 
 /**
@@ -13,11 +14,24 @@ object Conf {
   val config: Config = ConfigFactory.load("properties")
 
 
-  final val TIME_UNIT = config.getString("unit.granularity") match {
+  lazy val TIME_UNIT: TimeUnit = {
+    if (WheelFactory.granularity != null)
+      {
+        println("get granularity from var")
+        WheelFactory.granularity
+      }
+    else
+      {
+        println("get granularity from properties")
+        config.getString("unit.granularity")
+      }
+  }
+  match {
     case "seconds" => TimeUnit.SECONDS
     case "minutes" => TimeUnit.MINUTES
     case "hours" => TimeUnit.HOURS
-    case _ => null
+    case x =>
+      throw new IllegalArgumentException(s"Unsupported TimeUnit $x")
   }
 
   assertSettings()

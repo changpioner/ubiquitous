@@ -16,11 +16,21 @@ import org.apache.log4j.Logger
 object WheelFactory {
 
   private val logger: Logger = Logger.getLogger(this.getClass)
+
+  private var running: Boolean = false
+
   lazy private val trigger = new Trigger(TIME_UNIT)
 
   val DEFAULT_BUFFER_SIZE = 8
 
-  val tuList: List[TimeUnit] = List(TimeUnit.SECONDS, TimeUnit.MINUTES, TimeUnit.HOURS)
+  private var _granularity: String = _
+
+  def granularity: String = _granularity
+
+  def granularity_(granularity: String): Unit = _granularity = granularity
+
+
+  lazy val tuList: List[TimeUnit] = List(TimeUnit.SECONDS, TimeUnit.MINUTES, TimeUnit.HOURS)
     .filter(tu => tu.compareTo(TIME_UNIT) >= 0)
 
   private lazy val wheels: Map[TimeUnit, RingBufferWheel] =
@@ -37,6 +47,8 @@ object WheelFactory {
   }
 
   def addDelayTask[T](task: Task[T]): Unit = {
+
+    if (!running) start()
 
     task.hours match {
       case 0 =>
@@ -64,25 +76,30 @@ object WheelFactory {
   }
 
   def start(): Unit = {
-
-    Conf.getString("triggerMod") match {
-      case "single" =>
-        logger.info(s"$TIME_UNIT trigger starting ...")
-        Executor.addTrigger(trigger)
-      case "multiple" =>
-        tuList.map(t => new MultipleTrigger(WheelFactory.unitWheel(t).get, t)).foreach(Executor.addTrigger)
-      case _ =>
-        throw new IllegalArgumentException(s"trigger mod does not support ${Conf.getString("triggerMod")}")
+    synchronized {
+      if (!running) {
+        Conf.getString("triggerMod") match {
+          case "single" =>
+            logger.info(s"$TIME_UNIT trigger starting ...")
+            Executor.addTrigger(trigger)
+          case "multiple" =>
+            tuList.map(t => new MultipleTrigger(WheelFactory.unitWheel(t).get, t)).foreach(Executor.addTrigger)
+          case _ =>
+            throw new IllegalArgumentException(s"trigger mod does not support ${Conf.getString("triggerMod")}")
+        }
+        running = true
+      }
     }
-
-
   }
 
   def close(): Unit = {
+    synchronized {
+      running = false
+      //TODO remove triggers
+    }
 
   }
 
-  start()
 
   def printTasks(): Unit = {
     wheels.foreach {

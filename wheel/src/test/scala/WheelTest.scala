@@ -85,12 +85,15 @@ class WheelTest extends FunSuite {
   }
 
   test("wheelSizeTask") {
+    WheelFactory.granularity_("seconds")
+
     class TK(delay: Int, var msg: String) extends Task[Unit] {
       val st = new Date()
 
       override def dl: Int = delay
 
       override def persist(): Boolean = false
+
 
       override def call(): Unit = {
         //Thread.sleep(delay * 1000)
@@ -108,10 +111,9 @@ class WheelTest extends FunSuite {
     //    )
 
     // tasks.foreach(WheelFactory.addDelayTask)
-    (0 until 200).foreach(
+    (0 until 2000).foreach(
       i => {
-        Thread.sleep(i * 10 )
-        WheelFactory.addDelayTask(new TK(60, s"$i ...."))
+        WheelFactory.addDelayTask(new TK(i, s"$i ...."))
       }
     )
     //WheelFactory.printTasks()
@@ -160,6 +162,26 @@ class WheelTest extends FunSuite {
   }
 
   test("remove") {
+
+    class Consumer[+T](t: T) {
+      def use[U >: T](u: U): T = {
+        println(t)
+        t
+      }
+    }
+
+    class A {
+      val a = "a"
+    }
+    class B extends A {
+
+    }
+
+    val c: Consumer[A] = new Consumer(new A)
+
+    c.use(new B)
+
+
     val wheel: Array[mutable.Map[Int, mutable.Set[Task[Any]]]] =
       new Array[mutable.Map[Int, mutable.Set[Task[Any]]]](8)
 
